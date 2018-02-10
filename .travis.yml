@@ -1,0 +1,12 @@
+language: r
+sudo: true
+latex: false
+pandoc: false
+
+install: echo "Nothing occurs at installation, only script"
+
+script:
+  - Rscript install_texlive.R
+  - Rscript -e 'tinytex::pdflatex('text.tex')'
+
+
