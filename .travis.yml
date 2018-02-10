@@ -5,21 +5,17 @@ pandoc: false
 warnings_are_errors: false
 
 install: echo "Nothing occurs at installation, only script"
-
 script:
-  - set -e
-  - Rscript install_texlive.R
-  - Rscript -e 'tinytex::pdflatex(list.files(pattern = "\\.tex$")[1])'
-
+- set -e
+- Rscript install_texlive.R
+- Rscript -e 'tinytex::pdflatex(list.files(pattern = "\\.tex$")[1])'
 branches:
-  only: 
-    - master
-    - travising
+  - master
+  - travising
 deploy:
   provider: releases
-  skip_cleanup: true
+  api_key:
+    secure: c76lXK4lZWUX2UWO9cnnycCkBMD4fDxOR6ebRK48Ztp2e2t+Jf++hLuXa4QlUuQD1bKA/pJRHgv5n+ncZRK9tPxxMJwESUvvbuwG4i4Fm2QLLE6rjo4ZyqdoQUHVamQFvSRXNUQPE1UoA0kx3r39vs6zUuLGJnU0oytq3wZXGu3aaoY4ywP+JuIz799eYWCiuAAArg+uVd9wnmDyPALS/ajeT0j6R1KJrb5xUpoqREae9VI3IbxkpDsBefx5R36CKRBay2Z/4IebZAPwqu8Q02Fkmhxruk5soEnq/1f3ERvGwEJYBaSlfycxJ2cTXkuvOn5TJuTJgMhvc9Dbg4pAqAIUo5ka5NMHq64KwaD64TbFpvg93T712ijrAaJkjDfECz+mgAMWh0Dm1SYD2v52i05nYKv8cbsF/3He2v6SS65gH7E9bXNQEOBNfFqEJ0qXJ5vw4Zl9q3l71axtlZfKMw5Yrap5eHUjU3rzMX9XeqM+zl6XQRzFoqeeXXZAOIuQhEkRjF862AHD/50oGdLM7zT18Zk0Sq+c9Gx5TXcEmZn2j+qeD9JcWXP4JK7GMpdT5hj7CKSIq5oJdH9+VvS7M6ffcoaQ3HSPMkAzq4T8qXLsse8q0hNqBuaS0dVfGCKPbjnf9K/8xyrIG35w/xeBt/bcMepQL/9elL+XJMW3/Is=
   file: Report.pdf
   on:
     repo: HughParsonage/latex-travis
-
-
