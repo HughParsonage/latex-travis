@@ -2,11 +2,24 @@ language: r
 sudo: true
 latex: false
 pandoc: false
+warnings_are_errors: false
 
 install: echo "Nothing occurs at installation, only script"
 
 script:
+  - set -e
   - Rscript install_texlive.R
-  - Rscript -e 'tinytex::pdflatex('text.tex')'
+  - Rscript -e 'tinytex::pdflatex(list.files(pattern = "\\.tex$")[1])'
+
+branches:
+  only: 
+    - master
+    - travising
+deploy:
+  provider: releases
+  skip_cleanup: true
+  file: Report.pdf
+  on:
+    repo: HughParsonage/latex-travis
 
 
