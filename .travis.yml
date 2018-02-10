@@ -2,6 +2,7 @@ language: r
 sudo: true
 latex: false
 pandoc: false
+warnings_are_errors: false
 
 install: echo "Nothing occurs at installation, only script"
 
