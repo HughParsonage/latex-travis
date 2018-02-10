@@ -6,9 +6,10 @@ warnings_are_errors: false
 
 install: echo "Nothing occurs at installation, only script"
 script:
-- set -e
+- Rscript -e 'cat(Sys.which("pdflatex"), "\n ======= \n")'
 - Rscript install_texlive.R
 - Rscript -e 'tinytex::pdflatex(list.files(pattern = "\\.tex$")[1])'
+- Rscript -e 'list.files()'
 branches:
   - master
   - travising
