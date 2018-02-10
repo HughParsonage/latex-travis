@@ -11,11 +11,15 @@ script:
   - Rscript install_texlive.R
   - Rscript -e 'tinytex::pdflatex(list.files(pattern = "\\.tex$")[1])'
 
+branches:
+  only: 
+    - master
+    - travising
 deploy:
   provider: releases
   skip_cleanup: true
   file: Report.pdf
   on:
-    repo: hughparsonage/latex-travis
+    repo: HughParsonage/latex-travis
 
 
