@@ -1,5 +1,5 @@
 language: r
-sudo: true
+sudo: false
 latex: false
 pandoc: false
 warnings_are_errors: false
