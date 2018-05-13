@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: sumdoc/texlive-2018
+      - image: rocker/geospatial:latest
     steps:
       - checkout
       - run:
