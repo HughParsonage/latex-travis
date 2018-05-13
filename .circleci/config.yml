@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           command: |
-            R install_texlive.R
+            Rscript install_texlive.R
             R -e 'devtools::install_github("hughparsonage/grattanReporter")'
             R -e 'library(grattanReporter);checkGrattanReport(compile = TRUE)'
             
