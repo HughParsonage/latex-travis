@@ -1,27 +1,25 @@
 version: 2
+
 jobs:
-    working_directory: ~/main
-    docker:
-      - image: sumdoc/texlive-2018
-      - image: appsilon/ci-base:1.0
+  build:
+    working_directory: ~/test
+    machine: true
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
-            - deps1-{{ .Branch }}
-            - deps1-
       - run:
+          name: Fast finish outdated PRs and merge PRs
           command: |
-            R -e 'devtools::install_deps(dependencies = TRUE)'
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
-          paths:
-            - "/usr/local/lib/R/site-library"
+            ./ci_support/fast_finish_ci_pr_build.sh
+            ./ci_support/checkout_merge_commit.sh
       - run:
-          command: |
-            R -e 'results <- devtools::check(); stopifnot(length(results$errors) == 0)'
-      - store_artifacts:
-          path: man/
-          destination: man
+          command: docker pull condaforge/linux-anvil
+      - run:
+          # Run, test and (if we have a BINSTAR_TOKEN) upload the distributions.
+          command: ./ci_support/run_docker_build.sh
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
           
