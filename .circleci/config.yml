@@ -12,7 +12,7 @@ jobs:
           command: |
             R -e 'devtools::install_github("hughparsonage/grattanReporter")'
             R -e 'devtools::install_github(c("yihui/tinytex"), quiet = TRUE)'
-            R -e 'tinytex::install_tinytex()'
+            R -e 'tryCatch(tinytex::install_tinytex(), error = function(e) tinytex::pdflatex("Report.tex"))'
             R -e 'hutils::provide.dir("travis/grattanReport")'
             R -e 'library(grattanReporter);checkGrattanReport(compile = TRUE)'
             
