@@ -12,5 +12,6 @@ jobs:
           command: |
             Rscript install_texlive.R
             R -e 'devtools::install_github("hughparsonage/grattanReporter")'
+            R -e 'hutils::provide.dir("travis/grattanReport")'
             R -e 'library(grattanReporter);checkGrattanReport(compile = TRUE)'
             
