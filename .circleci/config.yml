@@ -6,4 +6,8 @@ jobs:
     steps:
       - checkout
       - run:
-          command: pdflatex Report.tex
+          command: |
+            Rscript -e 'install.packages(c("devtools", "TeXCheckR"))'
+            Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
+            Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
+          
