@@ -14,7 +14,6 @@ numbers=noenddot,
 ]{scrreprt}
 
 % Continuous numbering
-\RequirePackage{chngcntr}
 \RequirePackage{etoolbox}
 \RequirePackage{footmisc}
 \RequirePackage{tablefootnote} % for footnotes within tables
