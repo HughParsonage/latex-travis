@@ -10,6 +10,9 @@ jobs:
       - checkout
       - run:
           command: |
+            pdflatex Report.tex
+            biber Report
+            pdflatex Report.tex
             Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
             Rscript -e 'devtools::install_github(c("yihui/tinytex"), quiet = TRUE)'
             Rscript -e 'writeLines(c("\\documentclass{article}", "\\usepackage{biblatex}", "\\usepackage{helvet}", "\\addbibresource{bib/Op-eds.bib}", "\\begin{document}", "\\textcite{Ben-2010-theOz-School-Appraisal}", "\\printbibliography", "\\end{document}"), "temp.tex")'
