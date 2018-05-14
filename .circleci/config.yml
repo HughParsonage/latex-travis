@@ -3,18 +3,23 @@ jobs:
   build:
     working_directory: ~/main
     docker:
-      - image: shabbychef/docker
+      - image: rocker/verse
         environment:
           NOT_CRAN: true
     steps:
       - checkout
       - run:
           command: |
-            R -e 'devtools::install_github("hughparsonage/grattanReporter")'
-            R -e 'devtools::install_github(c("yihui/tinytex"), quiet = TRUE)'
-            R -e 'writeLines(c("\\documentclass{article}", "\\usepackage{biblatex}", "\\addbibresource{bib/Op-eds.bib}", "\\begin{document}", "\\textcite{Ben-2010-theOz-School-Appraisal}", "\\printbibliography", "\\end{document}"), "temp.tex")'
-            R -e 'tryCatch(tinytex::install_tinytex(), error = function(e) tinytex::pdflatex("temp.tex", bib_engine = "biber"))'
+            Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
+            Rscript -e 'devtools::install_github(c("yihui/tinytex"), quiet = TRUE)'
+            Rscript -e 'writeLines(c("\\documentclass{article}", "\\usepackage{biblatex}", "\\addbibresource{bib/Op-eds.bib}", "\\begin{document}", "\\textcite{Ben-2010-theOz-School-Appraisal}", "\\printbibliography", "\\end{document}"), "temp.tex")'
+            Rscript -e 'tryCatch(tinytex::install_tinytex(), error = function(e) tinytex::pdflatex("temp.tex", bib_engine = "biber"))'
+            Rscript -e 'library(tinytex);tmlgr_install(c("blindtext", "cmap", "nowidow", "mdframed", "needspace", "tablefootnote", "tocloft", "xpatch", "multirow", "bbding", "mathastext", "isomath", "relsize"));tlmgr_update()'
+)
             R -e 'unlink("temp.tex")'
-            R -e 'hutils::provide.dir("travis/grattanReport")'
-            R -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
+            
+      - run: 
+          command: |
+            Rscript -e 'hutils::provide.dir("travis/grattanReport")'
+            Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
             
