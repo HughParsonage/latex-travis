@@ -15,7 +15,6 @@ jobs:
             Rscript -e 'writeLines(c("\\documentclass{article}", "\\usepackage{biblatex}", "\\addbibresource{bib/Op-eds.bib}", "\\begin{document}", "\\textcite{Ben-2010-theOz-School-Appraisal}", "\\printbibliography", "\\end{document}"), "temp.tex")'
             Rscript -e 'tryCatch(tinytex::install_tinytex(), error = function(e) tinytex::pdflatex("temp.tex", bib_engine = "biber"))'
             Rscript -e 'library(tinytex);tmlgr_install(c("blindtext", "cmap", "nowidow", "mdframed", "needspace", "tablefootnote", "tocloft", "xpatch", "multirow", "bbding", "mathastext", "isomath", "relsize"));tlmgr_update()'
-)
             R -e 'unlink("temp.tex")'
             
       - run: 
