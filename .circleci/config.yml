@@ -11,7 +11,7 @@ jobs:
       - run:
           command: |
             pdflatex -interaction=batchmode Report.tex
-            biber --only-log Report
+            biber Report
             pdflatex -interaction=batchmode Report.tex
             Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
             Rscript -e 'devtools::install_github(c("yihui/tinytex"), quiet = TRUE)'
