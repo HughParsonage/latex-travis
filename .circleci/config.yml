@@ -14,11 +14,8 @@ jobs:
             Rscript -e 'devtools::install_github(c("yihui/tinytex"), quiet = TRUE)'
             Rscript -e 'writeLines(c("\\documentclass{article}", "\\usepackage{biblatex}", "\\addbibresource{bib/Op-eds.bib}", "\\begin{document}", "\\textcite{Ben-2010-theOz-School-Appraisal}", "\\printbibliography", "\\end{document}"), "temp.tex")'
             Rscript -e 'tryCatch(tinytex::install_tinytex(), error = function(e) tinytex::pdflatex("temp.tex", bib_engine = "biber"))'
-            Rscript -e 'library(tinytex);tlmgr_install(c("ifmtarg", "ms", "pgf", "psnfss", "eso-pic", "babel-english", "koma-script", "footmisc", "xifthen", "xcolor", "tikz", "adjustbox", "collectbox", "float", "placeins", "enumitem", "colortbl", "helvet", "cleveref", "varioref", "csquotes", "dvips", "blindtext", "cmap", "nowidow", "mdframed", "needspace", "tablefootnote", "tocloft", "xpatch", "multirow", "bbding", "mathastext", "isomath", "relsize"));tlmgr_update()'
+            Rscript -e 'library(tinytex);tlmgr_install(c("ifmtarg", "ms", "pgf", "psnfss", "eso-pic", "babel-english", "koma-script", "footmisc", "xifthen", "xcolor", "adjustbox", "collectbox", "float", "placeins", "enumitem", "colortbl", "cleveref", "csquotes", "dvips", "blindtext", "cmap", "nowidow", "mdframed", "needspace", "tablefootnote", "tocloft", "xpatch", "multirow", "bbding", "mathastext", "isomath", "relsize"));tlmgr_update()'
             R -e 'unlink("temp.tex")'
-            
-      - run: 
-          command: |
             Rscript -e 'hutils::provide.dir("travis/grattanReport")'
             Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
             
