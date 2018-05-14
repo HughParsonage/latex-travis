@@ -11,6 +11,7 @@ jobs:
       - run:
           command: |
             Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
+            Rscript install_texlive.R
             Rscript -e 'devtools::install_github("yihui/tinytex");library(tinytex);pdflatex("Report.tex")'
             Rscript -e 'hutils::provide.dir("travis/grattanReport")'
             Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
