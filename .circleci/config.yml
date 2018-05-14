@@ -3,7 +3,6 @@ jobs:
   build:
     working_directory: ~/main
     docker:
-      - image: sumdoc/texlive-2018
       - image: rocker/tidyverse
         environment:
           NOT_CRAN: true
@@ -11,7 +10,8 @@ jobs:
       - checkout
       - run:
           command: |
-            Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'           
+            Rscript -e 'devtools::install_github("hughparsonage/grattanReporter")'
+            Rscript -e 'library(tinytex);pdflatex("Report.tex")'
             Rscript -e 'hutils::provide.dir("travis/grattanReport")'
             Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
             
