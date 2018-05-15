@@ -22,9 +22,9 @@ jobs:
             Rscript -e 'print(Sys.which("latexmk"))'
             Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
       - save_cache:
-        key: deps1-{{ .Branch }}-{{ checksum "grattan.cls" }} 
-        paths:
-          - "/usr/local/lib/R/site-library"
+          key: deps1-{{ .Branch }}-{{ checksum "grattan.cls" }} 
+          paths:
+            - "/usr/local/lib/R/site-library"
 
 
             
