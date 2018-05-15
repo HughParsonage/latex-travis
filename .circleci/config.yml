@@ -14,5 +14,7 @@ jobs:
             Rscript install_texlive.R
             Rscript -e 'devtools::install_github("yihui/tinytex");library(tinytex);tlmgr_install(c("ifmtarg", "ms", "pgf", "eso-pic", "babel-english", "koma-script", "footmisc", "xifthen", "xcolor", "adjustbox", "collectbox", "float", "placeins", "enumitem", "colortbl", "cleveref", "csquotes", "dvips", "blindtext", "cmap", "nowidow", "mdframed", "needspace", "tablefootnote", "tocloft", "xpatch", "multirow", "bbding", "mathastext", "isomath", "relsize"));tlmgr_update();pdflatex("Report.tex")'
             Rscript -e 'hutils::provide.dir("travis/grattanReport")'
+            Rscript -e 'print(Sys.which("pdflatex"))'
+            Rscript -e 'print(Sys.which("latexmk"))'
             Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
             
