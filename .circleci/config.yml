@@ -23,9 +23,9 @@ jobs:
             Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
       - save_cache:
         key: deps1-{{ .Branch }} 
-          paths:
-            - "/usr/local/lib/R/site-library"
-            - "/root/.TinyTeX"
+        paths:
+          - "/usr/local/lib/R/site-library"
+          - "/root/.TinyTeX"
 
 
             
