@@ -25,7 +25,6 @@ jobs:
         key: deps1-{{ .Branch }} 
         paths:
           - "/usr/local/lib/R/site-library"
-          - "/root/.TinyTeX"
 
 
             
