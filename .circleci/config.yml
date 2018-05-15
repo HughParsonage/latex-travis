@@ -9,9 +9,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        keys:
-          - deps1-{{ .Branch }}
-          - deps1-
+          keys:
+            - deps1-{{ .Branch }}
+            - deps1-
       - run:
           command: |
             Rscript -e 'devtools::install_github("hughparsonage/grattanReporter", ref = "tinytex-compatible")'
