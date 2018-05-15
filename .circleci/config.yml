@@ -8,6 +8,10 @@ jobs:
           NOT_CRAN: true
     steps:
       - checkout
+      - restore_cache:
+        keys:
+          - deps1-{{ .Branch }}
+          - deps1-
       - run:
           command: |
             Rscript -e 'devtools::install_github("hughparsonage/grattanReporter", ref = "tinytex-compatible")'
@@ -17,4 +21,11 @@ jobs:
             Rscript -e 'print(Sys.which("pdflatex"))'
             Rscript -e 'print(Sys.which("latexmk"))'
             Rscript -e 'library(grattanReporter);checkGrattanReport(compile = TRUE, pre_release = TRUE)'
+      - save_cache:
+        key: deps1-{{ .Branch }} 
+          paths:
+            - "/usr/local/lib/R/site-library"
+            - "/root/.TinyTeX"
+
+
             
