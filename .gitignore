@@ -1,0 +1,9 @@
+
+*.aux
+*.bcf
+*.fn100
+*.out
+*.pdf
+*.log
+*.xml
+*.toc
