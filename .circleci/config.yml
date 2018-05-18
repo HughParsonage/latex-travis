@@ -8,10 +8,10 @@ jobs:
           NOT_CRAN: true
     steps:
       - checkout
-      # - restore_cache:
-      #     keys:
-      #       - deps1-{{ .Branch }}
-      #       - deps1-
+      - restore_cache:
+          keys:
+            - deps1-{{ .Branch }}
+            - deps1-
       - run:
           command: |
             Rscript -e 'devtools::install_github("hughparsonage/grattanReporter", ref = "tinytex-compatible")'
